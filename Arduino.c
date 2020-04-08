@@ -90,6 +90,6 @@ void loop(){
   cmDistance x_avg = (x_1 + x_2) / 2.0;
 
   Serial.println(x_avg);
-  delay(delayBetweenMeasurements);
+  delay(delayBetweenMeasurements / 1000);
   
 }
