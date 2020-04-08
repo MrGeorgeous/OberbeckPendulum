@@ -4,98 +4,22 @@
 
 Данный сценарий прошивает Arduino Uno R3 для получения координаты между двумя ультразвуковыми дальномерами x(t).
 
+Отправьте команду **params** через COM-порт, чтобы получить обзор всех констант.
 
-typedef const uint8_t pinPort;
-typedef double waveTime; // time in seconds
-typedef double microWaveTime; // time in microseconds 10^-6
-typedef unsigned int integerMicroWaveTime; // integer time in microseconds 10^-6
-typedef double distance; // distance in meters
-typedef double cmDistance; // distance in cm 10^-2
-typedef double velocity; // velocity in m/s
+Для **проведения измерительного эксперимента** необходимо изменить следующие константы в коде:
 
-float temperature = 24.0; // room temperature between 0 C and 30 C
-unsigned int serialSpeed = 9600; // bps data speed for COM-interaction
-integerMicroWaveTime delayBetweenMeasurements = 50 * 1000; // microsedonds 10^-6 to wait between taking measurements
-cmDistance betweenSensorAndStart = 0.0;
-cmDistance betweenSensorAndFinish = 0.0;
-cmDistance distanceInOperation = 70.0;
-pinPort sensorStartEcho = 2;
-pinPort sensorStartTrig = 3;
-pinPort sensorFinishEcho = 4;
-pinPort sensorFinishTrig = 5;
+* dataFrequency (100 * 10^-3 s): частота получения координаты в миллисекундах
+* temperature (24 C): температура проведения эксперимента в градусах Цельсия
+* betweenSensorAndStart (0 cm): расстояние между начальной координатой и начальным датчиком в сантиметрах
+* distanceInOperation (70 cm): длина координатного отрезка в сантиметрах (0 <= x(t) <= distanceInOperation)
+* betweenSensorAndFinish (0 cm): расстояние между конечной координатой и конечным датчиком в сантиметрах
 
+Для **подключения датчиков и настройки устройства** необходимо изменить следующие константы в коде:
 
-velocity speed_of_sound = 331.5 + 0.59 * temperature; // speed of sound for 24 C
-integerMicroWaveTime noWaveCollisionsInterval = 2 + (distanceInOperation + betweenSensorAndStart + betweenSensorAndFinish) / 100 / speed_of_sound; 
-
-struct UltrasonicSensor{
-
-  pinPort EchoPin;
-  pinPort TrigPin;
-  
-};
-
-
-void UltrasonicSensor_init(UltrasonicSensor p) {
-  pinMode(p.EchoPin, INPUT);
-  pinMode(p.TrigPin, OUTPUT);
-}
-
-void UltrasonicSensor_sendWave(UltrasonicSensor p, integerMicroWaveTime pauseDuration, integerMicroWaveTime transmitDuration) {
-  digitalWrite(p.TrigPin, LOW);
-  delayMicroseconds(pauseDuration);
-  digitalWrite(p.TrigPin, HIGH);
-  delayMicroseconds(transmitDuration);
-  digitalWrite(p.TrigPin, LOW);
-}
-
-microWaveTime UltrasonicSensor_getWaveTime(struct UltrasonicSensor p) {
-  microWaveTime t = pulseIn(p.EchoPin, HIGH);
-  return t;  
-}
-
-cmDistance UltrasonicSensor_getDistance(struct UltrasonicSensor p, const size_t totalMeasurements = 3,
-integerMicroWaveTime pauseDuration = 3, integerMicroWaveTime transmitDuration = 5) {
-  UltrasonicSensor_sendWave(p, pauseDuration, transmitDuration);
-  microWaveTime count = 0.0;
-  for (size_t i = 0; i < totalMeasurements; i++) {
-      count += UltrasonicSensor_getWaveTime(p);
-  }
-  microWaveTime avg_time = count / totalMeasurements;
-  cmDistance d = speed_of_sound * avg_time / 20000.0;
-  return d;
-}
-
-
-
-struct UltrasonicSensor sensorStart = {sensorStartEcho, sensorStartTrig};
-struct UltrasonicSensor sensorFinish = {sensorFinishEcho, sensorFinishTrig};
-
-void setup(){
-
-  // MAYBE: get the temperature
-  
-  // Calculate precize speed of sound
-  if ((temperature >= 0.01) && (temperature <= 30.01)) {
-      speed_of_sound = 331.5 + 0.59 * temperature;
-  }
-  
-  Serial.begin(serialSpeed);
-
-  UltrasonicSensor_init(sensorStart);
-  UltrasonicSensor_init(sensorFinish);
-  
-}
-
-void loop(){
-
-  cmDistance x_1 = UltrasonicSensor_getDistance(sensorStart, 3, 3, 5) - betweenSensorAndStart;
-  delayMicroseconds(noWaveCollisionsInterval);
-  cmDistance x_2 = distanceInOperation - UltrasonicSensor_getDistance(sensorFinish, 3, 3, 5) - betweenSensorAndFinish;
-
-  cmDistance x_avg = (x_1 + x_2) / 2.0;
-
-  Serial.println(x_avg);
-  delay(delayBetweenMeasurements / 1000);
-  
-}
+* sensorStartEcho (2): номер пина Echo начального датчика
+* sensorStartTrig (3): номер пина Trig начального датчика
+* sensorFinishEcho (4): номер пина Echo конечного датчика
+* sensorFinishTrig (5): номер пина Trig конечного датчика
+* serialSpeed (57600 bps): скорость обмена данными через COM-порт
+* serialTimeout (50 * 10^-3 s): максимальное время получения данных по COM-порту
+* pulseInTimeout (50 * 10^-3 s): максимальное время получения времени от датчика
