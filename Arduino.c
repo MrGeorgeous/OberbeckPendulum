@@ -151,9 +151,8 @@ void loop(){
   delay(round(noWaveCollisionsInterval / 1000));
   cmDistance x_2 = distanceInOperation - UltrasonicSensor_getDistance(sensorStart, measurementsPerTact, pauseDurationPerTact, transmitDurationPerTact) - betweenSensorAndFinish;
 
-  cmDistance heuristics = (x_1 + x_2) / 2.0;
-
-  Serial.println(x_avg);
+  Serial.println(analysis(x_1, x_2));
+  
   delay(dataFrequency);
   
 }
