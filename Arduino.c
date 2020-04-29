@@ -11,7 +11,7 @@ float temperature = 24.0; // room temperature between 0 C and 30 C
 unsigned int serialSpeed = 9600; // bps data speed for COM-interaction
 integerMilliWaveTime serialTimeout = 50; // milliseconds
 integerMicroWaveTime pulseInTimeout = 10000; // microseconds
-integerMilliWaveTime dataFrequency = 100; // milliseconds for the delay for measurements
+integerMilliWaveTime dataFrequency = 100; // milliseconds for the delay of measurements
 
 size_t measurementsPerTact = 3;
 integerMicroWaveTime pauseDurationPerTact = 3;
