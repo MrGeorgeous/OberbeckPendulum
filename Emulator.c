@@ -64,39 +64,6 @@ void setup() {
   Serial.begin(serialSpeed);
   Serial.setTimeout(serialTimeout);
 
-  Serial.println(m(0));
-  Serial.println(m(1));
-  Serial.println(m(2));
-  Serial.println(m(3));
-  Serial.println(m(4));
-  Serial.println();
-  Serial.println(1000* a(1,1));
-  Serial.println(1000* a(1,2));
-  Serial.println(1000* a(1,3));
-  Serial.println(1000*a(1,4));
-  Serial.println(1000*a(1,5));
-  Serial.println(1000*a(1,6));
-  Serial.println();
-  Serial.println(I(1));
-  Serial.println(I(2));
-  Serial.println(I(3));
-  Serial.println(I(4));
-  Serial.println(I(5));
-  Serial.println(I(6));
-  Serial.println();
-  Serial.println(R(1));
-  Serial.println(R(2));
-  Serial.println(R(3));
-  Serial.println(R(4));
-  Serial.println(R(5));
-  Serial.println(R(6));
-   Serial.println();
-  Serial.println(1000 * M_tr(1));
-  Serial.println(1000 *M_tr(2));
-  Serial.println(1000 *M_tr(3));
-  Serial.println(1000 *M_tr(4));
-  Serial.println(1000 *M_tr(5));
-  Serial.println(1000 *M_tr(6));
 }
 
 microWaveTime experimentTime = 0;
@@ -152,7 +119,7 @@ void serialEvent() {
         isBusy = true;
         experimentTime = 0;
         
-        Serial.print("Throw ");
+        Serial.print("# Throw ");
         Serial.print(experimentalQ);
         Serial.print(" cargos using ");
         Serial.print(experimentalN);
@@ -166,18 +133,20 @@ void loop() {
     if (isBusy) {
 
       microWaveTime previousTime = micros();
-      Serial.print(experimentTime / 1000 / 1000);
-      Serial.print(" ");
+      //Serial.print(experimentTime / 1000 / 1000);
+      //Serial.print(" ");
       cmDistance r = x(experimentTime / 1000 / 1000, experimentalQ, experimentalN);
       if (r == 0) {
           isBusy = false;
+          Serial.println("# Done");
       }
       Serial.println(r);
       delay(dataFrequency);
       experimentTime += micros() - previousTime;
       
     } else {
-      delay(1);
+      Serial.println("70.0");
+      delay(dataFrequency);
     }
   
 }
