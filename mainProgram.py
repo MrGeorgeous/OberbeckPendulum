@@ -113,47 +113,6 @@ def set_N_and_Q():
     n = int(input())
     print("======================================================")
 
-
-# ======================== Эмулятор ========================
-def get_single_measurement_Emulator():
-    global n
-    global q
-
-    set_N_and_Q()
-
-    measurements = []
-
-    r = 70.0
-    experimentTime = 0.0
-    while r > 0.0:
-        measurements.append(r)
-        r = x(experimentTime, q, n)
-        experimentTime += 0.01
-    # Эвристика
-    fall_time = 0.01 * len(measurements) - 0.1
-
-    return fall_time
-
-
-def make_calculations_Emulator():
-    # TODO Результаты
-
-    th = [...]  # Шапка
-    td = [...]  # Данные
-
-    columns = len(th)
-
-    table = PrettyTable(th)
-
-    td_data = td[:]
-
-    while td_data:
-        table.add_row(td_data[:columns])
-        td_data = td_data[columns:]
-
-    print(table)
-
-
 # ======================== Установка ========================
 
 def get_single_measurement_Arduino():
@@ -161,7 +120,7 @@ def get_single_measurement_Arduino():
     global q
 
     set_N_and_Q()
-    ser.write(("throw " + n + " " + q).encode("utf-8"))
+    ser.write(("throw " + str(n) + " " + str(q)).encode("utf-8"))
 
     arduino_data = []
 
@@ -191,6 +150,8 @@ def get_single_measurement_Arduino():
 
         if abs(data_initial - data_in) < EPS:
             f1 = False
+
+
 
     while data_in > 0.0:
         t_in = ser.readline()
@@ -230,39 +191,31 @@ def make_calculations_Arduino():
 print("======================================================")
 print("Добро пожаловать!")
 
-check_facility_settings()
-
 command = 1
 while command == 1:
     print("Выберите действие")
-    print("=== Эмулятор ===")
-    print("1 - Одиночное измерение (эмулятор)")
-    print("2 - Серия измерений для каждого положения груза на рейки и масс шайбы (эмулятор)")
     print("=== Установка ===")
-    print("3 - Одиночное измерение (установка)")
-    print("4 - Серия измерений для каждого положения груза на рейки и масс шайбы (установка)")
+    print("1 - Одиночное измерение")
+    print("2 - Серия измерений для каждого положения груза на рейки и масс шайбы")
     print("=== Выход ===")
-    print("5 - Закончить программу")
+    print("3 - Закончить программу")
 
     command = int(input())
 
     if command == 1:
-        fall_time = get_single_measurement_Emulator()
-
-        print("Время падаения равно ", end="")
-        print(fall_time)
-
-    elif command == 2:
-        make_calculations_Emulator()
-
-    elif command == 3:
         arduino_data = get_single_measurement_Arduino()
 
         print("Время падаения равно ", end="")
         print(0.01 * len(arduino_data))
 
-    elif command == 4:
+    elif command == 2:
         make_calculations_Arduino()
 
-    else:
+    elif command != 3:
         print("Неверно введена команда!\n")
+
+    else:
+        print("== Выключение ==")
+        ser.close()
+
+ser.close()
