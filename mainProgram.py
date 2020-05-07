@@ -1,7 +1,7 @@
 from array import *
+from prettytable import PrettyTable
 import matplotlib.pyplot as plt
 import numpy as np
-
 
 # Константы
 mass_karetka = 0.047
@@ -52,11 +52,14 @@ def M_tr(n_):
 def R(n_):
     return l_1 + (n_ - 1) * l_0 + b / 2
 
+
 def I(n_):
     return I_0 + 4 * mass_gruz * R(n_) * R(n_) / 10000
 
+
 def m(q_):
     return mass_karetka + q_ * mass_shaiba
+
 
 def a(q_, n_):
     return (m(q_) * (d / 100) * g / 2 - M_tr(n_)) / (2 * I(n_) / (d / 100) + m(q_) * (d / 100) / 2)
@@ -78,52 +81,98 @@ def takeMeasurements(q, n):
     return measurements
 
 
+def take_single_measurement():
+    print("Желаете ли внести изменить данные об установке?\n 1 - Да, 2 - Нет")
+    changeInstallationData = int(input())
+    if changeInstallationData == 1:
+        print("Введите массу каретки: ", end="")
+        caretcaMass = float(input())
+        print("Введите массу шайбы: ", end="")
+        m = float(input())
+        print("Введите массу груза-утяжелителя на крестовине: ", end="")
+        mUt = float(input())
+        print("Введите расстояние первой риски от оси: ", end="")
+        l1 = float(input())
+        print("Введите расстояние между рисками: ", end="")
+        l0 = float(input())
+        print("Введите диаметр ступицы: ", end="")
+        d = float(input())
+        print("Введите размер утяжелителя вдоль спицы: ", end="")
+        b = float(input())
+
+    print("======================================================")
+    print("Выберите конфигурацию:\nГрузы: 1, 2, 3, 4\nРейка: 1, 2, 3, 4, 5, 6");
+
+    print("Введите колличество грузов: ", end="")
+    q = int(input())
+    print("Введите номер риски: ", end="")
+    n = int(input())
+    print("======================================================")
+
+
+    measurements = takeMeasurements(q, n)
+    # fall_time = 0.01 * len(measurements)
+    # TODO Эвристика
+    fall_time = 0.01 * len(measurements) - 0.1
+
+    return fall_time
+
+
 def make_calculations():
     # TODO Результаты
     ttt = 0
 
 
+
+
+
+
+
+
+
+
+# =======================================================================================================================
+
 print("======================================================")
 print("Добро пожаловать!")
 
-print("Желаете ли внести изменить данные об установке?\n 1 - Да, 2 - Нет")
-changeInstallationData = int(input())
-if changeInstallationData == 1:
-    print("Введите массу каретки: ", end="")
-    caretcaMass = float(input())
-    print("Введите массу шайбы: ", end="")
-    m = float(input())
-    print("Введите массу груза-утяжелителя на крестовине: ", end="")
-    mUt = float(input())
-    print("Введите расстояние первой риски от оси: ", end="")
-    l1 = float(input())
-    print("Введите расстояние между рисками: ", end="")
-    l0 = float(input())
-    print("Введите диаметр ступицы: ", end="")
-    d = float(input())
-    print("Введите размер утяжелителя вдоль спицы: ", end="")
-    b = float(input())
 
-print("======================================================")
-print("Выберите конфигурацию:\nГрузы: 1, 2, 3, 4\nРейка: 1, 2, 3, 4, 5, 6");
+command = 1
 
-print("Введите колличество грузов: ", end="")
-q = int(input())
-print("Введите номер риски: ", end="")
-n = int(input())
-print("======================================================")
+while command == 1:
+    print("Выберите действие")
+    print("1 - Одиночное измерение")
+    print("2 - Серия измерений для каждого положения груза на рейки и масс шайбы")
+    print("3 - Закончить программу")
+
+    command = int(input())
+    if command == 1:
+        fall_time = take_single_measurement()
+
+        print("Время падаения равно ", end="")
+        print(fall_time)
+
 
 # !Данные можно получить с установки!
 # arduinoData = getDataFromArduino()
-# t = 0.1 * len(arduinoData)
-# R = l1 + (n - 1) * l0 + b / 2
-# a = (2 * h_0) / (t ** 2)  # Ускорение
-# eps = 2 * a / d  # Угловое ускорение крестовины
-# T = m * (g - a)  # Сила натяжения
-# M = m * d * (g - a) / 2  # Момент силы натяжения
 
+if command == 2:
 
-measurements = takeMeasurements(q, n)
-t = 0.01 * len(measurements)
-print("Время падаения равно ", end="")
-print(t)
+    th = [...]  # Шапка
+    td = [...]  # Данные
+
+    columns = len(th)
+
+    table = PrettyTable(th)
+
+    td_data = td[:]
+
+    while td_data:
+        table.add_row(td_data[:columns])
+        td_data = td_data[columns:]
+
+    print(table)
+
+else:
+    print("Неверно введена команда")
+
