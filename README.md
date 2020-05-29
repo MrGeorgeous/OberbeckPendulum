@@ -1,5 +1,10 @@
 # OberbeckPendulum
 
+[Старая статья](https://1drv.ms/w/s!Apyu-RQDxqdLl19sx__UMgL3wEDg?e=aZCkaL)
+
+[Новая статья](https://1drv.ms/w/s!Apyu-RQDxqdLl2Fmd754Kf6JyVYe?e=NJWkcE)
+
+
 ### Arduino.c
 
 Данный сценарий прошивает Arduino Uno R3 для получения координаты между двумя ультразвуковыми дальномерами x(t).
