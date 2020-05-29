@@ -142,6 +142,7 @@ def plots(data_in):
             y_out1.append(a + b * xi)
 
         plt.plot(x, y_out1)
+        plt.scatter(x, y_out1, color='orange', s=20, marker='o')
 
     plt.cla()
     for i in range(reika):
@@ -151,6 +152,8 @@ def plots(data_in):
     plt.xlabel('ε, рад/с^2 ')
     plt.ylabel('M(ε), Н*м')
     plt.grid()
+
+
 
     #plt.show()
     plt.savefig(graphs[0], format='png')
@@ -190,6 +193,7 @@ def plots(data_in):
             y_out1.append(a + b * xi)
 
         plt.plot(x, y_out1)
+        plt.scatter(x, y_out1, color='orange', s=20, marker='o')
 
 
     R_x = []
