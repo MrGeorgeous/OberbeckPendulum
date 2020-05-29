@@ -142,11 +142,12 @@ def plots(data_in):
             y_out1.append(a + b * xi)
 
         plt.plot(x, y_out1)
-        plt.scatter(x, y_out1, color='orange', s=20, marker='o')
+
 
     plt.cla()
     for i in range(reika):
        add_plot1(M_x[i], eps_y[i])
+       plt.scatter(M_x[i], eps_y[i], color='orange', s=20, marker='o')
 
 
     plt.xlabel('ε, рад/с^2 ')
@@ -193,7 +194,7 @@ def plots(data_in):
             y_out1.append(a + b * xi)
 
         plt.plot(x, y_out1)
-        plt.scatter(x, y_out1, color='orange', s=20, marker='o')
+
 
 
     R_x = []
@@ -206,6 +207,7 @@ def plots(data_in):
 
     plt.cla()
     add_plot2(R_x, I_y)
+    plt.scatter(R_x, I_y, color='orange', s=20, marker='o')
 
     plt.xlabel('R^2, м^2')
     plt.ylabel('I, кг*м^2')
