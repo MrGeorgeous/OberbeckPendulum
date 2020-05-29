@@ -27,8 +27,13 @@ moments_tr = [-0.00228920, 0.00998837, 0.00906186, 0.01317346, 0.01499408, 0.016
 mass_gruz_array = [0.69, 0.91, 1.13, 1.35]
 R_arr = [0.08, 0.1, 0.13, 0.15, 0.18, 0.2]
 
+data_from_arduino = [[]]
+data_a_e_M = [[]]
+
 
 def plots(data_in):
+    global data_from_arduino
+    global data_a_e_M
 
     graphs = [io.BytesIO(), io.BytesIO()]
 
@@ -246,15 +251,13 @@ n_lengths = 6
 n_measurements = 3
 data_from_arduino = [[[0.0 for k in range(n_measurements)] for j in range(n_lengths)] for i in range(n_masses)]
 
-# Пример!
+# TODO Пример!
 data_from_arduino = [
     [[4.41, 4.46, 4.44], [5.84, 5.84, 5.97], [7.07, 7.00, 7.06], [7.97, 8.06, 8.07], [9.50, 9.22, 9.31], [10.28, 10.13, 10.37]],
     [[3.16, 3.28, 3.25], [4.09, 4.16, 4.18], [4.04, 5.00, 5.28], [5.72, 5.69, 5.64], [6.40, 6.31, 6.28], [7.25, 7.13, 7.28]],
     [[2.81, 2.72, 2.72], [3.39, 3.46, 3.35], [4.06, 4.13, 4.06], [4.56, 4.69, 4.63], [5.15, 5.19, 5.19], [5.81, 5.81, 5.81]],
     [[2.40, 2.34, 2.47], [3.00, 2.91, 2.97], [3.56, 3.59, 3.64], [3.93, 4.03, 3.98], [4.53, 4.47, 4.43], [5.03, 4.97, 4.94]]
 ]
-
-print(data_from_arduino[2][1][1])
 
 print(data_from_arduino)
 
@@ -311,8 +314,6 @@ def resultWindow(data):
     layout2 = [ [sg.Image(filename='', key='image2')] ]
 
 
-    #TODO
-    # ЗДЕСЬ СДЕЛАТЬ ТАБЛИЦЫ И ВСТАВИТЬ
 
     # ======================= Таблица 1  =======================
     headings = ['t, c', 'n2 = 1', 'n2 = 2', 'n2 = 3', 'n2 = 4', 'n2 = 5', 'n2 = 6']
@@ -394,13 +395,98 @@ def resultWindow(data):
     input_row12 = [[sg.Text('', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row12_str]]
     # ===================================================================
 
-
-
     layoutTable1 = header + input_row1 + input_row2 + input_row3 + input_row4 + input_row5 + input_row6 + input_row7 + input_row8 + input_row9 + input_row10 + input_row11 + input_row12
     #layoutTable1 = []
 
-    # ======================= Таблица 1  =======================
-    layoutTable2 = []
+
+    # ======================= Таблица 2  =======================
+    global data_a_e_M
+
+    headings = ['a,ε,M', 'n2 = 1', 'n2 = 2', 'n2 = 3', 'n2 = 4', 'n2 = 5', 'n2 = 6']
+    header = [[sg.Text(h, size=(6, 1)) for h in headings]]
+
+    # input_rows = [[sg.Text(' 1 ') for col in range(4)] for row in range(10)]
+    row1_str = []
+    for i in range(6):
+        row1_str.append('   ' + str(data_a_e_M[0][i][0]))
+
+    input_row1 = [[sg.Text('n1', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row1_str]]
+
+    row2_str = []
+    for i in range(6):
+        row2_str.append('   ' + str(data_a_e_M[0][i][1]))
+
+    input_row2 = [[sg.Text('', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row2_str]]
+
+    row3_str = []
+    for i in range(6):
+        row3_str.append('   ' + str(data_a_e_M[0][i][2]))
+
+    input_row3 = [[sg.Text('', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row3_str]]
+
+    # ===================================================================
+    row4_str = []
+    for i in range(6):
+        row4_str.append('   ' + str(data_a_e_M[1][i][0]))
+
+    input_row4 = [[sg.Text('n2', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row4_str]]
+
+    row5_str = []
+    for i in range(6):
+        row5_str.append('   ' + str(data_a_e_M[1][i][1]))
+
+    input_row5 = [[sg.Text('', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row5_str]]
+
+    row6_str = []
+    for i in range(6):
+        row6_str.append('   ' + str(data_a_e_M[1][i][2]))
+
+    input_row6 = [[sg.Text('', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row6_str]]
+    # ===================================================================
+    row7_str = []
+    for i in range(6):
+        row7_str.append('   ' + str(data_a_e_M[2][i][0]))
+
+    input_row7 = [[sg.Text('n3', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row7_str]]
+
+    row8_str = []
+    for i in range(6):
+        row8_str.append('   ' + str(data_a_e_M[2][i][1]))
+
+    input_row8 = [[sg.Text('', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row8_str]]
+
+    row9_str = []
+    for i in range(6):
+        row9_str.append('   ' + str(data_a_e_M[2][i][2]))
+
+    input_row9 = [[sg.Text('', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row9_str]]
+
+    # ===================================================================
+    row10_str = []
+    for i in range(6):
+        row10_str.append('   ' + str(data_a_e_M[3][i][0]))
+
+    input_row10 = [[sg.Text('n3', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row10_str]]
+
+    row11_str = []
+    for i in range(6):
+        row11_str.append('   ' + str(data_a_e_M[3][i][1]))
+
+    input_row11 = [[sg.Text('', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row11_str]]
+
+    row12_str = []
+    for i in range(6):
+        row12_str.append('   ' + str(data_a_e_M[3][i][2]))
+
+    input_row12 = [[sg.Text('', size=(6, 1))] + [sg.Text(r, size=(6, 1)) for r in row12_str]]
+    # ===================================================================
+
+    layoutTable2 = header + input_row1 + input_row2 + input_row3 + input_row4 + input_row5 + input_row6 + input_row7 + input_row8 + input_row9 + input_row10 + input_row11 + input_row12
+
+
+
+
+    #layoutTable2 = []
 
     layout = [[sg.TabGroup([[
         sg.Tab('Таблица 1 (T)', layoutTable1),
@@ -545,7 +631,7 @@ def awaitSingleThrow(m, r, s):
 
         #print()
     except:
-        print("dunna why but something is wrong")
+        print("danna why but something is wrong")
 
     global measuringNow
     measuringNow = False
@@ -600,10 +686,14 @@ def read_from_file():
     #    [sg.FileSaveAs(target='input'), sg.OK()],
     #]
 
-    data_from_file = [[0]]
+    data_from_file = [[]]
 
-    file_name_in = ''
-    file_name_in = str(sg.popup_get_file('Пожалуйста, введите название файла.'))
+
+    file_name_in = str(sg.popup_get_file('Выбор файла с измерениями'))
+
+    if file_name_in == 'None':
+        return data_from_file
+
     with open(file_name_in) as f:
         for line in f:
             data_from_arduino.append([float(x) for x in line.split()])
@@ -622,7 +712,7 @@ window.finalize()
 detectArduino()
 
 # Считывание из файла!
-#data_from_file = read_from_file()
+data_from_file = read_from_file()
 
 
 while True:
