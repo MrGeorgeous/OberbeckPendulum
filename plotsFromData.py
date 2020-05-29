@@ -143,7 +143,7 @@ def plots(data_in):
 
         plt.plot(x, y_out1)
 
-
+    plt.cla()
     for i in range(reika):
        add_plot1(M_x[i], eps_y[i])
 
@@ -200,6 +200,7 @@ def plots(data_in):
 
     print()
 
+    plt.cla()
     add_plot2(R_x, I_y)
 
     plt.xlabel('R^2, м^2')
