@@ -1,5 +1,3 @@
-
-
 from array import *
 
 from prettytable import PrettyTable
@@ -8,16 +6,22 @@ import io
 import numpy as np
 import serial
 
+
 # Константы
 EPS = 2
-mass_karetka = 0.047
-mass_shaiba = 0.220
-mass_gruz = 0.408
+m0 = 0.047
+delta_m0 = 0.0005
+m_shaiba = 0.220
+delta_m_shaiba = 0.0005
+m_gruz = 0.408
+delta_m_gruz = 0.0005
 l_1 = 5.7
 l_0 = 2.5
 b = 4.0
 d = 0.046
+delta_d = 0.0005
 h = 0.7
+delta_h = 0.0
 g = 9.81908
 humanDelayTime = 0.13
 I_0 = 0.011541518
@@ -482,17 +486,50 @@ def resultWindow(data_from_arduino):
 
     layoutTable2 = header + input_row1 + input_row2 + input_row3 + input_row4 + input_row5 + input_row6 + input_row7 + input_row8 + input_row9 + input_row10 + input_row11 + input_row12
 
+    # ======================= Погрешности  =======================
+    n1_delta = 1
+    n2_delta = 1
 
+    t1 = data_from_arduino[n1_delta][n2_delta][0]
+    t2 = data_from_arduino[n1_delta][n2_delta][1]
+    t3 = data_from_arduino[n1_delta][n2_delta][2]
+    t_avrg = (t1 + t2 + t3) / 3
+    # Погрешность t
+    delta_t = 2.353 * (((t_avrg - t1) ** 2 + (t_avrg - t2) ** 2 + (t_avrg - t3) ** 2) / 6) ** 0.5
 
+    a = data_a_e_M[n1_delta][n2_delta][0]
+    eps = data_a_e_M[n1_delta][n2_delta][1]
+    M = data_a_e_M[n1_delta][n2_delta][2]
+    t = t_avrg
 
-    #layoutTable2 = []
+    delta_a = 1.0 * ((-4 * h * delta_t / t ** 3) ** 2 + (2 * delta_h / t ** 2) ** 2) ** (0.5)
+    e_a = 1.0 * delta_a / a
+
+    delta_eps = 1.0 * ((-8 * h * delta_t / d / t ** 3) ** 2 + (4 * delta_h / d / t ** 2) ** 2 + (
+            -4 * h * delta_d / d ** 2 / t ** 2) ** 2) ** (0.5)
+    e_eps = 1.0 * delta_eps / eps
+
+    delta_M = 1.0 * ((d / 2 * m0 * (m0 + m_shaiba * n1_delta) * (g - 2 * h / t ** 2) * delta_m0) ** 2 + (
+            d / 2 * m_shaiba * (m0 + m_shaiba * n1_delta) * (g - 2 * h / t ** 2) * delta_m_shaiba) ** 2 + (
+                             2 * d * h * (m0 + m_shaiba * n1_delta) * delta_t / t ** 3) ** 2 + (
+                             1 / 2 * (m0 + m_shaiba * n1_delta) * (g - 2 * h / t ** 2) * delta_d) ** 2) ** (0.5)
+    e_M = 1.0 * delta_M / M
+
+    row_delta_1 = [[sg.Text('Погрешности для одного груза, первая рейка.')]]
+    row_delta_2 = [[sg.Text('∆t = ')] + [sg.Text(round(delta_t, 3))]]
+    row_delta_3 = [[sg.Text('∆a = ')] + [sg.Text(round(delta_a, 3))]]
+    row_delta_4 = [[sg.Text('∆ε = ')] + [sg.Text(round(delta_eps, 3))]]
+    row_delta_5 = [[sg.Text('∆M = ')] + [sg.Text(round(delta_M, 3))]]
+
+    layout_delta = row_delta_1 + row_delta_2 + row_delta_3 + row_delta_4 + row_delta_5
 
     layout = [[sg.TabGroup([[
         sg.Tab('Таблица 1 (T)', layoutTable1),
         sg.Tab('Таблица 2 (A, E, Mтр)', layoutTable2),
         sg.Tab('График 1 (M(E))', layout1),
-        sg.Tab('График 2 (I(R^2))', layout2)
-    ]]) ]]
+        sg.Tab('График 2 (I(R^2))', layout2),
+        sg.Tab('Погрешности', layout_delta)
+    ]])]]
 
     window = sg.Window('Таблицы и графики', layout)
     window.finalize()
@@ -508,6 +545,33 @@ def resultWindow(data_from_arduino):
     img1.save(imgByteArr, format='PNG')
     #imgByteArr = imgByteArr.getvalue()
     window['image2'](data=imgByteArr.getvalue())
+
+
+# ============================= Погрешности =============================
+def find_delta(n1, n2):
+    global data_from_arduino
+    global data_a_e_M
+
+    t1 = data_from_arduino[n1][n2][0]
+    t2 = data_from_arduino[n1][n2][1]
+    t3 = data_from_arduino[n1][n2][2]
+    t_avrg = (t1 + t2 + t3) / 3
+    # Погрешность t
+    delta_t = 2.353 * ( ((t_avrg - t1) ** 2 + (t_avrg - t2) ** 2 + (t_avrg - t3) ** 2) / 6 ) ** 0.5
+
+    a = data_a_e_M[n1][n2][0]
+    eps = data_a_e_M[n1][n2][1]
+    M = data_a_e_M[n1][n2][2]
+    t = t_avrg
+
+    delta_a = 1.0 * ( (-4*h * delta_t / t**3 )**2 + (2 * delta_h / t**2)**2 ) ** (0.5)
+    e_a = 1.0 * delta_a / a
+
+    delta_eps = 1.0 * ( (-8*h*delta_t / d / t**3)**2 + (4*delta_h / d / t**2)**2  + (-4*h*delta_d / d**2 / t**2)**2 )**(0.5)
+    e_eps = 1.0 * delta_eps / eps
+
+    delta_M = 1.0 * ( (d / 2 * m0 * (m0 + m_shaiba * n1)*(g - 2*h/t**2)*delta_m0)**2 + (d/2*m_shaiba*(m0 + m_shaiba*n1)*(g - 2*h/t**2)*delta_m_shaiba)**2 +( 2*d*h*(m0 + m_shaiba*n1)*delta_t / t**3 )**2 + ( 1/2*(m0 + m_shaiba*n1)*(g - 2*h/t**2)*delta_d )**2)** (0.5)
+    e_M = 1.0 * delta_M / M
 
 
 def exportGraphs(data_from_arduino):
@@ -843,10 +907,3 @@ if False:
     print("l2: " + str(awaitSingleThrow(4, 2)))
 
 exit(0);
-
-
-
-
-
-
-
