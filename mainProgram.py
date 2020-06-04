@@ -729,12 +729,13 @@ def count_all_delta():
         for j in range(n_lengths_delta):
             data_delta_t_a_e_M[i][j] = find_delta(i, j)
 
-    print(data_delta_t_a_e_M)
+
 
 
 def exportGraphs(data_from_arduino):
     graphs = plots(data_from_arduino)
     count_all_delta()
+    print(data_delta_t_a_e_M)
 
     Image.open(graphs[0]).save("graph1.png")
     Image.open(graphs[1]).save("graph2.png")
