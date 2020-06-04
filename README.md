@@ -4,6 +4,8 @@
 
 [Новая статья](https://1drv.ms/w/s!Apyu-RQDxqdLl2Fmd754Kf6JyVYe?e=NJWkcE)
 
+[Презентация](https://1drv.ms/p/s!Apyu-RQDxqdLl2OzlQJsOzpYF2NM?e=ZP7QPJ)
+
 
 ### Arduino.c
 
