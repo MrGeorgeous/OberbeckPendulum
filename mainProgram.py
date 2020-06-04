@@ -516,7 +516,7 @@ def resultWindow(data_from_arduino):
 
 
     # ===================================================================
-
+    count_all_delta()
 
     headings = ['∆(t,a,ε,M)', ' n2 = 1', ' n2 = 2', ' n2 = 3', '  n2 = 4', '   n2 = 5', '    n2 = 6']
     header = [[sg.Text(h, size=(7, 1), font=("Helvetica", 14)) for h in headings]]
