@@ -390,7 +390,7 @@ def resultWindow(data_from_arduino):
               #+ [[sg.Text('1(n2 = 5):  M(ε) = ' + str(round(b_plot_1[4], 4)) + 'ε + (' + str(round(a_plot_1[4], 4)) + ')', font=("Helvetica", 10))]] \
               #+ [[sg.Text('1(n2 = 6):  M(ε) = ' + str(round(b_plot_1[5], 4)) + 'ε + (' + str(round(a_plot_1[5], 4)) + ')', font=("Helvetica", 10))]] \
 
-    layout2 = [[sg.Image(filename='', key='image2')]] + [[sg.Text('mут = ' + str(round(b_plot_2, 4)) + ' +- ' + str(round(b_plot_2_delta, 4)) + ' кг, I0 = ' + str(round(a_plot_2, 4)) + ' +- ' + str(round(a_plot_2_delta, 4)) + ' кг*м^2', size=(60, 1), font=("Helvetica", 13))]]
+    layout2 = [[sg.Image(filename='', key='image2')]] + [[sg.Text('mут = ' + str(round(b_plot_2, 4)/4) + ' +- ' + str(round(b_plot_2_delta, 4)) + ' кг, I0 = ' + str(round(a_plot_2, 4)) + ' +- ' + str(round(a_plot_2_delta, 4)) + ' кг*м^2', size=(60, 1), font=("Helvetica", 13))]]
 
     # ======================= Таблица 1  =======================
     headings = ['t, c', 'n2 = 1', 'n2 = 2', 'n2 = 3', 'n2 = 4', 'n2 = 5', 'n2 = 6']
@@ -698,22 +698,6 @@ def resultWindow(data_from_arduino):
                    + input_row4 + input_row5 + input_row6 + input_row6t + [[sg.Text('')]] \
                    + input_row7 + input_row8 + input_row9 + input_row9t + [[sg.Text('')]] \
                    + input_row10 + input_row11 + input_row12 + input_row12t
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     # ======================= Layout =======================
