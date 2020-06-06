@@ -380,17 +380,17 @@ def resultWindow(data_from_arduino):
 
 
     layout1 = [[sg.Image(filename='', key='image1')]] \
-              + [[sg.Text('1(n2 = 1):  I = ' + str(round(b_plot_1[0], 4)) + ' +- ' + str(round(b_plot_1_delta[0], 4)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[0], 4)) + ' +- ' + str(round(a_plot_1_delta[0], 4)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
-                + [sg.Text('1(n2 = 2):  I = ' + str(round(b_plot_1[3], 4)) + ' +- ' + str(round(b_plot_1_delta[3], 4)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[3], 4)) + ' +- ' + str(round(a_plot_1_delta[3], 4)) + ' Н*м', font=("Helvetica", 13))]] \
-              + [[sg.Text('1(n2 = 3):  I = ' + str(round(b_plot_1[1], 4)) + ' +- ' + str(round(b_plot_1_delta[1], 4)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[1], 4)) + ' +- ' + str(round(a_plot_1_delta[1], 4)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
-                + [sg.Text('1(n2 = 4):  I = ' + str(round(b_plot_1[4], 4)) + ' +- ' + str(round(b_plot_1_delta[4], 4)) + ' ,кг*м^2 Mтр = '+ str(round(a_plot_1[4], 4)) + ' +- ' + str(round(a_plot_1_delta[4], 4)) + ' Н*м', font=("Helvetica", 13))]] \
-              + [[sg.Text('1(n2 = 5):  I = ' + str(round(b_plot_1[2], 4)) + ' +- ' + str(round(b_plot_1_delta[2], 4)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[2], 4)) + ' +- ' + str(round(a_plot_1_delta[2], 4)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
-                + [sg.Text('1(n2 = 6):  I = ' + str(round(b_plot_1[5], 4)) + ' +- ' + str(round(b_plot_1_delta[5], 4)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[5], 4)) + ' +- ' + str(round(a_plot_1_delta[5], 4)) + ' Н*м', font=("Helvetica", 13))]] \
+              + [[sg.Text('1(n2 = 1):  I = ' + str(round(b_plot_1[0], 2)) + ' +- ' + str(round(b_plot_1_delta[0], 2)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[0], 2)) + ' +- ' + str(round(a_plot_1_delta[0], 2)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
+                + [sg.Text('2(n2 = 2):  I = ' + str(round(b_plot_1[3], 2)) + ' +- ' + str(round(b_plot_1_delta[3], 2)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[3], 2)) + ' +- ' + str(round(a_plot_1_delta[3], 2)) + ' Н*м', font=("Helvetica", 13))]] \
+              + [[sg.Text('3(n2 = 3):  I = ' + str(round(b_plot_1[1], 2)) + ' +- ' + str(round(b_plot_1_delta[1], 2)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[1], 2)) + ' +- ' + str(round(a_plot_1_delta[1], 2)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
+                + [sg.Text('4(n2 = 4):  I = ' + str(round(b_plot_1[4], 2)) + ' +- ' + str(round(b_plot_1_delta[4], 2)) + ' ,кг*м^2 Mтр = '+ str(round(a_plot_1[4], 2)) + ' +- ' + str(round(a_plot_1_delta[4], 2)) + ' Н*м', font=("Helvetica", 13))]] \
+              + [[sg.Text('5(n2 = 5):  I = ' + str(round(b_plot_1[2], 2)) + ' +- ' + str(round(b_plot_1_delta[2], 2)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[2], 2)) + ' +- ' + str(round(a_plot_1_delta[2], 2)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
+                + [sg.Text('6(n2 = 6):  I = ' + str(round(b_plot_1[5], 2)) + ' +- ' + str(round(b_plot_1_delta[5], 2)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[5], 2)) + ' +- ' + str(round(a_plot_1_delta[5], 2)) + ' Н*м', font=("Helvetica", 13))]] \
               # [[sg.Text('1(n2 = 4):  M(ε) = ' + str(round(b_plot_1[3], 4)) + 'ε + (' + str(round(a_plot_1[3], 4)) + ')', font=("Helvetica", 10))]] \
               #+ [[sg.Text('1(n2 = 5):  M(ε) = ' + str(round(b_plot_1[4], 4)) + 'ε + (' + str(round(a_plot_1[4], 4)) + ')', font=("Helvetica", 10))]] \
               #+ [[sg.Text('1(n2 = 6):  M(ε) = ' + str(round(b_plot_1[5], 4)) + 'ε + (' + str(round(a_plot_1[5], 4)) + ')', font=("Helvetica", 10))]] \
 
-    layout2 = [[sg.Image(filename='', key='image2')]] + [[sg.Text('mут = ' + str(round(b_plot_2, 4)/4) + ' +- ' + str(round(b_plot_2_delta, 4)) + ' кг, I0 = ' + str(round(a_plot_2, 4)) + ' +- ' + str(round(a_plot_2_delta, 4)) + ' кг*м^2', size=(60, 1), font=("Helvetica", 13))]]
+    layout2 = [[sg.Image(filename='', key='image2')]] + [[sg.Text('mут = ' + str(round(b_plot_2, 2)/4) + ' +- ' + str(round(b_plot_2_delta, 2)) + ' кг, I0 = ' + str(round(a_plot_2, 2)) + ' +- ' + str(round(a_plot_2_delta, 2)) + ' кг*м^2', size=(60, 1), font=("Helvetica", 13))]]
 
     # ======================= Таблица 1  =======================
     headings = ['t, c', 'n2 = 1', 'n2 = 2', 'n2 = 3', 'n2 = 4', 'n2 = 5', 'n2 = 6']
