@@ -6,6 +6,11 @@
 
 [Презентация](https://1drv.ms/p/s!Apyu-RQDxqdLl2OzlQJsOzpYF2NM?e=ZP7QPJ)
 
+### Ссылки для служебного пользования
+
+[Официальный практикум ИТМО](https://books.ifmo.ru/file/pdf/2181.pdf)
+
+[Условие лабораторной работы](Lab.pdf)
 
 ### Arduino.c
 
