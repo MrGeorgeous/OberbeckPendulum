@@ -166,7 +166,6 @@ def plots(data_in):
         Sb = (1/D * sum_d / (len(x) - 2)) ** 0.5
         Sa = ((1/len(x) + x_*x_/D) * sum_d/(len(x) - 2)) ** 0.5
 
-        print(Sa, ' ', Sb)
 
         a_plot_1_delta[count - 1] = 2 * Sa
         b_plot_1_delta[count - 1] = 2 * Sb
@@ -185,7 +184,6 @@ def plots(data_in):
         count = count + 1
         plt.scatter(M_x[i], eps_y[i], color='orange', s=20, marker='o')
 
-    print(a_plot_1_delta)
 
     plt.xlabel('ε, рад/с^2 ')
     plt.ylabel('M(ε), Н*м')
@@ -300,7 +298,6 @@ throw_result_time = 0.0
 delta_measurement = 0.5
 EMULATOR_MODE_ON = True
 
-import pprint
 
 n_masses = 4
 n_lengths = 6
@@ -326,7 +323,7 @@ data_from_arduino = [
      [5.03, 4.97, 4.94]]
 ]
 
-print(data_from_arduino)
+#print(data_from_arduino)
 
 from PIL import Image
 
@@ -488,19 +485,19 @@ def resultWindow(data_from_arduino):
     for i in range(2, 6):
         row1_str.append('   ' + str(round(data_a_e_M[0][i][0], 2)))
 
-    input_row1 = [[sg.Text('n1 = 1', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(str(round(data_a_e_M[0][0][0], 4)) + ' м/c^2', font=14) ] + [sg.Text(' ' + str(round(data_a_e_M[0][1][0], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row1_str]]
+    input_row1 = [[sg.Text('n1 = 1', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(str(round(data_a_e_M[0][0][0], 2)) + ' м/c^2', font=14) ] + [sg.Text(' ' + str(round(data_a_e_M[0][1][0], 2)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row1_str]]
 
     row2_str = []
     for i in range(2, 6):
         row2_str.append('   ' + str(round(data_a_e_M[0][i][1], 2)))
 
-    input_row2 = [[sg.Text('  ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(str(round(data_a_e_M[0][0][1], 4)) + ' рад/c^2', font=14) ] + [sg.Text(str(round(data_a_e_M[0][1][1], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row2_str]]
+    input_row2 = [[sg.Text('  ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(str(round(data_a_e_M[0][0][1], 2)) + ' рад/c^2', font=14) ] + [sg.Text(str(round(data_a_e_M[0][1][1], 2)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row2_str]]
 
     row3_str = []
     for i in range(2, 6):
         row3_str.append('   ' + str(round(data_a_e_M[0][i][2], 2)))
 
-    input_row3 = [[sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(str(round(data_a_e_M[0][0][2], 4)) + ' Н*м', font=14) ] + [sg.Text('    ' + str(round(data_a_e_M[0][1][2], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row3_str]]
+    input_row3 = [[sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(str(round(data_a_e_M[0][0][2], 2)) + ' Н*м', font=14) ] + [sg.Text('    ' + str(round(data_a_e_M[0][1][2], 2)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row3_str]]
 
     # ===================================================================
     row4_str = []
@@ -586,28 +583,28 @@ def resultWindow(data_from_arduino):
         row1_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][0], 2)))
 
     input_row1 = [
-        [sg.Text('n1 = 1', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][0], 4)) + ' c', font=14) ] + [sg.Text('     ' + str(round(data_delta_t_a_e_M[0][1][0], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row1_str]]
+        [sg.Text('n1 = 1', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][0], 2)) + ' c', font=14) ] + [sg.Text('     ' + str(round(data_delta_t_a_e_M[0][1][0], 2)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row1_str]]
 
     row2_str = []
     for i in range(2, 6):
         row2_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][1], 2)))
 
     input_row2 = [
-        [sg.Text('  ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][1], 4)) + ' Н*м^2', font=14) ] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][1][1], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row2_str]]
+        [sg.Text('  ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][1], 2)) + ' Н*м^2', font=14) ] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][1][1], 2)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row2_str]]
 
     row3_str = []
     for i in range(2, 6):
         row3_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][2], 2)))
 
     input_row3 = [
-        [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][2], 4)) + ' рад/c^2', font=14) ] + [sg.Text('' + str(round(data_delta_t_a_e_M[0][1][2], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row3_str]]
+        [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][2], 2)) + ' рад/c^2', font=14) ] + [sg.Text('' + str(round(data_delta_t_a_e_M[0][1][2], 2)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row3_str]]
 
     row3t_str = []
     for i in range(2, 6):
         row3t_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][3], 2)))
 
     input_row3t = [
-        [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][3], 4)) + ' Н*м', font=14) ] + [sg.Text('' + str(round(data_delta_t_a_e_M[0][1][3], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row3t_str]]
+        [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][3], 2)) + ' Н*м', font=14) ] + [sg.Text('' + str(round(data_delta_t_a_e_M[0][1][3], 2)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row3t_str]]
 
     # ===================================================================
     row4_str = []
@@ -779,7 +776,7 @@ def count_all_delta():
 def exportGraphs(data_from_arduino):
     graphs = plots(data_from_arduino)
     count_all_delta()
-    print(data_delta_t_a_e_M)
+    #print(data_delta_t_a_e_M)
 
     Image.open(graphs[0]).save("graph1.png")
     Image.open(graphs[1]).save("graph2.png")
