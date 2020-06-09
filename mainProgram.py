@@ -305,7 +305,9 @@ import pprint
 n_masses = 4
 n_lengths = 6
 n_measurements = 3
-data_from_arduino = [[[0.0 for k in range(n_measurements)] for j in range(n_lengths)] for i in range(n_masses)]
+
+# TODO Для настоящей программы - обнуление
+# data_from_arduino = [[[0.0 for k in range(n_measurements)] for j in range(n_lengths)] for i in range(n_masses)]
 
 n_masses_delta = 4
 n_lengths_delta = 6
@@ -380,17 +382,17 @@ def resultWindow(data_from_arduino):
 
 
     layout1 = [[sg.Image(filename='', key='image1')]] \
-              + [[sg.Text('1(n2 = 1):  I = ' + str(round(b_plot_1[0], 2)) + ' +- ' + str(round(b_plot_1_delta[0], 2)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[0], 2)) + ' +- ' + str(round(a_plot_1_delta[0], 2)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
-                + [sg.Text('2(n2 = 2):  I = ' + str(round(b_plot_1[3], 2)) + ' +- ' + str(round(b_plot_1_delta[3], 2)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[3], 2)) + ' +- ' + str(round(a_plot_1_delta[3], 2)) + ' Н*м', font=("Helvetica", 13))]] \
-              + [[sg.Text('3(n2 = 3):  I = ' + str(round(b_plot_1[1], 2)) + ' +- ' + str(round(b_plot_1_delta[1], 2)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[1], 2)) + ' +- ' + str(round(a_plot_1_delta[1], 2)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
-                + [sg.Text('4(n2 = 4):  I = ' + str(round(b_plot_1[4], 2)) + ' +- ' + str(round(b_plot_1_delta[4], 2)) + ' ,кг*м^2 Mтр = '+ str(round(a_plot_1[4], 2)) + ' +- ' + str(round(a_plot_1_delta[4], 2)) + ' Н*м', font=("Helvetica", 13))]] \
-              + [[sg.Text('5(n2 = 5):  I = ' + str(round(b_plot_1[2], 2)) + ' +- ' + str(round(b_plot_1_delta[2], 2)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[2], 2)) + ' +- ' + str(round(a_plot_1_delta[2], 2)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
-                + [sg.Text('6(n2 = 6):  I = ' + str(round(b_plot_1[5], 2)) + ' +- ' + str(round(b_plot_1_delta[5], 2)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[5], 2)) + ' +- ' + str(round(a_plot_1_delta[5], 2)) + ' Н*м', font=("Helvetica", 13))]] \
+              + [[sg.Text('n2 = 1:  I = ' + str(round(b_plot_1[0], 4)) + ' +- ' + str(round(b_plot_1_delta[0], 4)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[0], 4)) + ' +- ' + str(round(a_plot_1_delta[0], 4)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
+                + [sg.Text('n2 = 2:  I = ' + str(round(b_plot_1[3], 4)) + ' +- ' + str(round(b_plot_1_delta[3], 4)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[3], 4)) + ' +- ' + str(round(a_plot_1_delta[3], 4)) + ' Н*м', font=("Helvetica", 13))]] \
+              + [[sg.Text('n2 = 3:  I = ' + str(round(b_plot_1[1], 4)) + ' +- ' + str(round(b_plot_1_delta[1], 4)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[1], 4)) + ' +- ' + str(round(a_plot_1_delta[1], 4)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
+                + [sg.Text('n2 = 4:  I = ' + str(round(b_plot_1[4], 4)) + ' +- ' + str(round(b_plot_1_delta[4], 4)) + ' ,кг*м^2 Mтр = '+ str(round(a_plot_1[4], 4)) + ' +- ' + str(round(a_plot_1_delta[4], 4)) + ' Н*м', font=("Helvetica", 13))]] \
+              + [[sg.Text('n2 = 5:  I = ' + str(round(b_plot_1[2], 4)) + ' +- ' + str(round(b_plot_1_delta[2], 4)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[2], 4)) + ' +- ' + str(round(a_plot_1_delta[2], 4)) + ' Н*м', size=(60, 1), font=("Helvetica", 13))]
+                + [sg.Text('n2 = 6:  I = ' + str(round(b_plot_1[5], 4)) + ' +- ' + str(round(b_plot_1_delta[5], 4)) + ' кг*м^2, Mтр = '+ str(round(a_plot_1[5], 4)) + ' +- ' + str(round(a_plot_1_delta[5], 4)) + ' Н*м', font=("Helvetica", 13))]] \
               # [[sg.Text('1(n2 = 4):  M(ε) = ' + str(round(b_plot_1[3], 4)) + 'ε + (' + str(round(a_plot_1[3], 4)) + ')', font=("Helvetica", 10))]] \
               #+ [[sg.Text('1(n2 = 5):  M(ε) = ' + str(round(b_plot_1[4], 4)) + 'ε + (' + str(round(a_plot_1[4], 4)) + ')', font=("Helvetica", 10))]] \
               #+ [[sg.Text('1(n2 = 6):  M(ε) = ' + str(round(b_plot_1[5], 4)) + 'ε + (' + str(round(a_plot_1[5], 4)) + ')', font=("Helvetica", 10))]] \
 
-    layout2 = [[sg.Image(filename='', key='image2')]] + [[sg.Text('mут = ' + str(round(b_plot_2, 2)/4) + ' +- ' + str(round(b_plot_2_delta, 2)) + ' кг, I0 = ' + str(round(a_plot_2, 2)) + ' +- ' + str(round(a_plot_2_delta, 2)) + ' кг*м^2', size=(60, 1), font=("Helvetica", 13))]]
+    layout2 = [[sg.Image(filename='', key='image2')]] + [[sg.Text('mут = ' + str(round(b_plot_2, 4)/4) + ' +- ' + str(round(b_plot_2_delta/4, 4)) + ' кг, I0 = ' + str(round(a_plot_2, 4)) + ' +- ' + str(round(a_plot_2_delta, 4)) + ' кг*м^2', size=(60, 1), font=("Helvetica", 13))]]
 
     # ======================= Таблица 1  =======================
     headings = ['t, c', 'n2 = 1', 'n2 = 2', 'n2 = 3', 'n2 = 4', 'n2 = 5', 'n2 = 6']
@@ -484,75 +486,75 @@ def resultWindow(data_from_arduino):
     # input_rows = [[sg.Text(' 1 ') for col in range(4)] for row in range(10)]
     row1_str = []
     for i in range(2, 6):
-        row1_str.append('   ' + str(round(data_a_e_M[0][i][0], 4)))
+        row1_str.append('   ' + str(round(data_a_e_M[0][i][0], 2)))
 
     input_row1 = [[sg.Text('n1 = 1', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(str(round(data_a_e_M[0][0][0], 4)) + ' м/c^2', font=14) ] + [sg.Text(' ' + str(round(data_a_e_M[0][1][0], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row1_str]]
 
     row2_str = []
     for i in range(2, 6):
-        row2_str.append('   ' + str(round(data_a_e_M[0][i][1], 4)))
+        row2_str.append('   ' + str(round(data_a_e_M[0][i][1], 2)))
 
     input_row2 = [[sg.Text('  ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(str(round(data_a_e_M[0][0][1], 4)) + ' рад/c^2', font=14) ] + [sg.Text(str(round(data_a_e_M[0][1][1], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row2_str]]
 
     row3_str = []
     for i in range(2, 6):
-        row3_str.append('   ' + str(round(data_a_e_M[0][i][2], 4)))
+        row3_str.append('   ' + str(round(data_a_e_M[0][i][2], 2)))
 
     input_row3 = [[sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(str(round(data_a_e_M[0][0][2], 4)) + ' Н*м', font=14) ] + [sg.Text('    ' + str(round(data_a_e_M[0][1][2], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row3_str]]
 
     # ===================================================================
     row4_str = []
     for i in range(6):
-        row4_str.append('   ' + str(round(data_a_e_M[1][i][0], 4)))
+        row4_str.append('   ' + str(round(data_a_e_M[1][i][0], 2)))
 
     input_row4 = [[sg.Text('n1 = 2', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row4_str]]
 
     row5_str = []
     for i in range(6):
-        row5_str.append('   ' + str(round(data_a_e_M[1][i][1], 4)))
+        row5_str.append('   ' + str(round(data_a_e_M[1][i][1], 2)))
 
     input_row5 = [[sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row5_str]]
 
     row6_str = []
     for i in range(6):
-        row6_str.append('   ' + str(round(data_a_e_M[1][i][2], 4)))
+        row6_str.append('   ' + str(round(data_a_e_M[1][i][2], 2)))
 
     input_row6 = [[sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row6_str]]
     # ===================================================================
     row7_str = []
     for i in range(6):
-        row7_str.append('   ' + str(round(data_a_e_M[2][i][0], 4)))
+        row7_str.append('   ' + str(round(data_a_e_M[2][i][0], 2)))
 
     input_row7 = [[sg.Text('n1 = 3', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row7_str]]
 
     row8_str = []
     for i in range(6):
-        row8_str.append('   ' + str(round(data_a_e_M[2][i][1], 4)))
+        row8_str.append('   ' + str(round(data_a_e_M[2][i][1], 2)))
 
     input_row8 = [[sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row8_str]]
 
     row9_str = []
     for i in range(6):
-        row9_str.append('   ' + str(round(data_a_e_M[2][i][2], 4)))
+        row9_str.append('   ' + str(round(data_a_e_M[2][i][2], 2)))
 
     input_row9 = [[sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row9_str]]
 
     # ===================================================================
     row10_str = []
     for i in range(6):
-        row10_str.append('   ' + str(round(data_a_e_M[3][i][0], 4)))
+        row10_str.append('   ' + str(round(data_a_e_M[3][i][0], 2)))
 
     input_row10 = [[sg.Text('n1 = 4', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row10_str]]
 
     row11_str = []
     for i in range(6):
-        row11_str.append('   ' + str(round(data_a_e_M[3][i][1], 4)))
+        row11_str.append('   ' + str(round(data_a_e_M[3][i][1], 2)))
 
     input_row11 = [[sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row11_str]]
 
     row12_str = []
     for i in range(6):
-        row12_str.append('   ' + str(round(data_a_e_M[3][i][2], 4)))
+        row12_str.append('   ' + str(round(data_a_e_M[3][i][2], 2)))
 
     input_row12 = [[sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row12_str]]
     # ===================================================================
@@ -581,28 +583,28 @@ def resultWindow(data_from_arduino):
 
     row1_str = []
     for i in range(2, 6):
-        row1_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][0], 4)))
+        row1_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][0], 2)))
 
     input_row1 = [
         [sg.Text('n1 = 1', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][0], 4)) + ' c', font=14) ] + [sg.Text('     ' + str(round(data_delta_t_a_e_M[0][1][0], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row1_str]]
 
     row2_str = []
     for i in range(2, 6):
-        row2_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][1], 4)))
+        row2_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][1], 2)))
 
     input_row2 = [
         [sg.Text('  ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][1], 4)) + ' Н*м^2', font=14) ] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][1][1], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row2_str]]
 
     row3_str = []
     for i in range(2, 6):
-        row3_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][2], 4)))
+        row3_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][2], 2)))
 
     input_row3 = [
         [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][2], 4)) + ' рад/c^2', font=14) ] + [sg.Text('' + str(round(data_delta_t_a_e_M[0][1][2], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row3_str]]
 
     row3t_str = []
     for i in range(2, 6):
-        row3t_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][3], 4)))
+        row3t_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][3], 2)))
 
     input_row3t = [
         [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text('   ' + str(round(data_delta_t_a_e_M[0][0][3], 4)) + ' Н*м', font=14) ] + [sg.Text('' + str(round(data_delta_t_a_e_M[0][1][3], 4)) + '    ', font=14)] + [sg.Text(r, size=(9, 1), font=14) for r in row3t_str]]
@@ -610,56 +612,56 @@ def resultWindow(data_from_arduino):
     # ===================================================================
     row4_str = []
     for i in range(6):
-        row4_str.append('   ' + str(round(data_delta_t_a_e_M[1][i][0], 4)))
+        row4_str.append('   ' + str(round(data_delta_t_a_e_M[1][i][0], 2)))
 
     input_row4 = [
         [sg.Text('n1 = 2', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row4_str]]
 
     row5_str = []
     for i in range(6):
-        row5_str.append('   ' + str(round(data_delta_t_a_e_M[1][i][1], 4)))
+        row5_str.append('   ' + str(round(data_delta_t_a_e_M[1][i][1], 2)))
 
     input_row5 = [
         [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row5_str]]
 
     row6_str = []
     for i in range(6):
-        row6_str.append('   ' + str(round(data_delta_t_a_e_M[1][i][2], 4)))
+        row6_str.append('   ' + str(round(data_delta_t_a_e_M[1][i][2], 2)))
 
     input_row6 = [
         [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row6_str]]
 
     row6t_str = []
     for i in range(6):
-        row6t_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][2], 4)))
+        row6t_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][2], 2)))
 
     input_row6t = [
         [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row6t_str]]
     # ===================================================================
     row7_str = []
     for i in range(6):
-        row7_str.append('   ' + str(round(data_delta_t_a_e_M[2][i][0], 4)))
+        row7_str.append('   ' + str(round(data_delta_t_a_e_M[2][i][0], 2)))
 
     input_row7 = [
         [sg.Text('n1 = 3', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row7_str]]
 
     row8_str = []
     for i in range(6):
-        row8_str.append('   ' + str(round(data_delta_t_a_e_M[2][i][1], 4)))
+        row8_str.append('   ' + str(round(data_delta_t_a_e_M[2][i][1], 2)))
 
     input_row8 = [
         [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row8_str]]
 
     row9_str = []
     for i in range(6):
-        row9_str.append('   ' + str(round(data_delta_t_a_e_M[2][i][2], 4)))
+        row9_str.append('   ' + str(round(data_delta_t_a_e_M[2][i][2], 2)))
 
     input_row9 = [
         [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row9_str]]
 
     row9t_str = []
     for i in range(6):
-        row9t_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][2], 4)))
+        row9t_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][2], 2)))
 
     input_row9t = [
         [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row9t_str]]
@@ -667,28 +669,28 @@ def resultWindow(data_from_arduino):
     # ===================================================================
     row10_str = []
     for i in range(6):
-        row10_str.append('   ' + str(round(data_delta_t_a_e_M[3][i][0], 4)))
+        row10_str.append('   ' + str(round(data_delta_t_a_e_M[3][i][0], 2)))
 
     input_row10 = [[sg.Text('n1 = 4', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in
                                                                                row10_str]]
 
     row11_str = []
     for i in range(6):
-        row11_str.append('   ' + str(round(data_delta_t_a_e_M[3][i][1], 4)))
+        row11_str.append('   ' + str(round(data_delta_t_a_e_M[3][i][1], 2)))
 
     input_row11 = [
         [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row11_str]]
 
     row12_str = []
     for i in range(6):
-        row12_str.append('   ' + str(round(data_delta_t_a_e_M[3][i][2], 4)))
+        row12_str.append('   ' + str(round(data_delta_t_a_e_M[3][i][2], 2)))
 
     input_row12 = [
         [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row12_str]]
 
     row12t_str = []
     for i in range(6):
-        row12t_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][3], 4)))
+        row12t_str.append('   ' + str(round(data_delta_t_a_e_M[0][i][3], 2)))
 
     input_row12t = [
         [sg.Text('', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(9, 1), font=14) for r in row12t_str]]
@@ -1076,6 +1078,8 @@ while True:
         window['r3'].Update(value=str(data_from_arduino[int(mass) - 1][int(length) - 1][2]))
 
     if event == 'showGraphs':
+        have_zeroes = False
+
         resultWindow(data_from_arduino)
 
     if event == 'exportGraphs':
