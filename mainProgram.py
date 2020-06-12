@@ -399,75 +399,75 @@ def resultWindow(data_from_arduino):
     # input_rows = [[sg.Text(' 1 ') for col in range(4)] for row in range(10)]
     row1_str = []
     for i in range(6):
-        row1_str.append('    ' + str(data_from_arduino[0][i][0]))
+        row1_str.append('    ' + str(round(data_from_arduino[0][i][0], 2)))
 
     input_row1 = [[sg.Text('n1 = 1', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row1_str]]
 
     row2_str = []
     for i in range(6):
-        row2_str.append('    ' + str(data_from_arduino[0][i][1]))
+        row2_str.append('    ' + str(round(data_from_arduino[0][i][1], 2)))
 
     input_row2 = [[sg.Text(' ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row2_str]]
 
     row3_str = []
     for i in range(6):
-        row3_str.append('    ' + str(data_from_arduino[0][i][2]))
+        row3_str.append('    ' + str(round(data_from_arduino[0][i][2], 2)))
 
     input_row3 = [[sg.Text(' ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row3_str]]
 
     # ===================================================================
     row4_str = []
     for i in range(6):
-        row4_str.append('    ' + str(data_from_arduino[1][i][0]))
+        row4_str.append('    ' + str(round(data_from_arduino[1][i][0], 2)))
 
     input_row4 = [[sg.Text('n1 = 2', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row4_str]]
 
     row5_str = []
     for i in range(6):
-        row5_str.append('    ' + str(data_from_arduino[1][i][1]))
+        row5_str.append('    ' + str(round(data_from_arduino[1][i][1], 2)))
 
     input_row5 = [[sg.Text(' ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row5_str]]
 
     row6_str = []
     for i in range(6):
-        row6_str.append('    ' + str(data_from_arduino[1][i][2]))
+        row6_str.append('    ' + str(round(data_from_arduino[1][i][2], 2)))
 
     input_row6 = [[sg.Text(' ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row6_str]]
     # ===================================================================
     row7_str = []
     for i in range(6):
-        row7_str.append('    ' + str(data_from_arduino[2][i][0]))
+        row7_str.append('    ' + str(round(data_from_arduino[2][i][0], 2)))
 
     input_row7 = [[sg.Text('n1 = 3', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row7_str]]
 
     row8_str = []
     for i in range(6):
-        row8_str.append('    ' + str(data_from_arduino[2][i][1]))
+        row8_str.append('    ' + str(round(data_from_arduino[2][i][1], 2)))
 
     input_row8 = [[sg.Text(' ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row8_str]]
 
     row9_str = []
     for i in range(6):
-        row9_str.append('    ' + str(data_from_arduino[2][i][2]))
+        row9_str.append('    ' + str(round(data_from_arduino[2][i][2], 2)))
 
     input_row9 = [[sg.Text(' ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row9_str]]
 
     # ===================================================================
     row10_str = []
     for i in range(6):
-        row10_str.append('    ' + str(data_from_arduino[3][i][0]))
+        row10_str.append('    ' + str(round(data_from_arduino[3][i][0], 2)))
 
     input_row10 = [[sg.Text('n1 = 4', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row10_str]]
 
     row11_str = []
     for i in range(6):
-        row11_str.append('    ' + str(data_from_arduino[3][i][1]))
+        row11_str.append('    ' + str(round(data_from_arduino[3][i][1], 2)))
 
     input_row11 = [[sg.Text(' ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row11_str]]
 
     row12_str = []
     for i in range(6):
-        row12_str.append('    ' + str(data_from_arduino[3][i][2]))
+        row12_str.append('    ' + str(round(data_from_arduino[3][i][2], 2)))
 
     input_row12 = [[sg.Text(' ', size=(6, 1), font=("Helvetica", 14))] + [sg.Text(r, size=(7, 1), font=14) for r in row12_str]]
     # ===================================================================
