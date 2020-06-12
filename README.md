@@ -6,7 +6,7 @@
 
 [Презентация](https://1drv.ms/p/s!Apyu-RQDxqdLl2OzlQJsOzpYF2NM?e=ZP7QPJ)
 
-[Демонстрация работы](MainProgramDebo.mp4)
+[Демонстрация работы (видео)](MainProgramDebo.mp4)
 
 ### Ссылки для служебного пользования
 
