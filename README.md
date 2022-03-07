@@ -1,10 +1,10 @@
 # OberbeckPendulum
 
-[Старая статья](https://1drv.ms/w/s!Apyu-RQDxqdLl19sx__UMgL3wEDg?e=aZCkaL)
+This project was conducted during the 'Physics' 2020 university course 
 
-[Новая статья](https://1drv.ms/w/s!Apyu-RQDxqdLl2Fmd754Kf6JyVYe?e=NJWkcE)
+[Cтатья](Article.pdf)
 
-[Презентация](https://1drv.ms/p/s!Apyu-RQDxqdLl2OzlQJsOzpYF2NM?e=ZP7QPJ)
+[Презентация](Presentation.pdf)
 
 [Демонстрация работы (видео)](MainProgramDebo.mp4)
 
